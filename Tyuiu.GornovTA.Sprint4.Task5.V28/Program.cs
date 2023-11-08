@@ -4,21 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Tyuiu.GornovTA.Sprint4.Task4.V19.Lib;
+using Tyuiu.GornovTA.Sprint4.Task5.V28.Lib;
 
-namespace Tyuiu.GornovTA.Sprint4.Task4.V19
+namespace Tyuiu.GornovTA.Sprint4.Task5.V28
 {
     class Program
     {
         static void Main(string[] args)
         {
             DataService ds = new DataService();
+            Random rnd = new Random();
             Console.Title = "Спринт №4 | Выполнил: Горнов Т. А. | АСОиУб-23-2";
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Спринт №4                                                               *");
             Console.WriteLine("* Тема: Одномерные массивы (генератор случайных чисел)                    *");
-            Console.WriteLine("* Задание №4                                                              *");
-            Console.WriteLine("* Вариант №19                                                             *");
+            Console.WriteLine("* Задание №5                                                              *");
+            Console.WriteLine("* Вариант №28                                                             *");
             Console.WriteLine("* Выполнил: Горнов Тимофей Анатольевич | АСОиУб-23-2                      *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
@@ -38,8 +39,7 @@ namespace Tyuiu.GornovTA.Sprint4.Task4.V19
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    Console.Write($"Введите {i},{j} элемент массива: ");
-                    mtrx[i, j] = Convert.ToInt32(Console.ReadLine());
+                    mtrx[i, j] = rnd.Next(-6, 4);
                 }
             }
             Console.WriteLine("\nМассив:");
@@ -55,8 +55,16 @@ namespace Tyuiu.GornovTA.Sprint4.Task4.V19
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
             Console.WriteLine("***************************************************************************");
-            int res = ds.Calculate(mtrx);
-            Console.WriteLine("Сумма нечётных элементов массива = " + res);
+            int[,] res = ds.Calculate(mtrx);
+            Console.WriteLine("Массив = ");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Console.Write($"{res[i, j]}\t");
+                }
+                Console.WriteLine();
+            }
             Console.ReadKey();
         }
     }
